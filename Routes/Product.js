@@ -10,6 +10,7 @@ import {
   addProduct,
   getProduct,
   editProduct,
+  deleteProduct,
 } from "../Controllers/Product.js";
 import checkAuthor from "../Middleware/Permission.js";
 
@@ -31,4 +32,7 @@ Router.put("/:id", checkAuthor, validationProductUpdate, (req, res) => {
   editProduct(req, res);
 });
 
+Router.delete("/:id", checkAuthor, validationProductUpdate, (req, res) => {
+  deleteProduct(req, res);
+});
 export default Router;

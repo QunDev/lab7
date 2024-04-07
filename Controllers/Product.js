@@ -101,4 +101,22 @@ const editProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, getProduct, addProduct, editProduct };
+const deleteProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = Products.findByIdAndDelete(id);
+    if (!result)
+      return res.status(400).json({
+        message: "Lỗi xóa",
+      });
+    return res.status(200).json({
+      message: "Xóa thành công",
+    });
+  } catch (e) {
+    return res.status(400).json({
+      message: "Error: " + e,
+    });
+  }
+};
+
+export { getAllProducts, getProduct, addProduct, editProduct, deleteProduct };
