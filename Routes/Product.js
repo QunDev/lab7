@@ -28,11 +28,11 @@ Router.post("/", checkAuthor, validationProduct, (req, res) => {
   addProduct(req, res);
 });
 
-Router.put("/:id", checkAuthor, validationProductUpdate, (req, res) => {
+Router.put("/:id", checkAuthor, (req, res) => {
   editProduct(req, res);
 });
 
-Router.delete("/:id", checkAuthor, validationProductUpdate, (req, res) => {
+Router.delete("/:id", checkAuthor, (req, res) => {
   deleteProduct(req, res);
 });
 export default Router;

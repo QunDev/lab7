@@ -119,7 +119,7 @@ const Category = Joi.object({
     "string.base": "Danh mục phải là chuỗi",
     "string.empty": "Danh mục không được để trống",
     "string.min": "Danh mục ít nhất {#limit} ký tự",
-    "string.required": "Danh mục là bắt buộc",
+    "any.required": "Danh mục là bắt buộc",
   }),
   description: Joi.string().min(5).messages({
     "string.base": "Mô tả sản phẩm phải là chuỗi",

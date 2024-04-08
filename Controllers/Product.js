@@ -104,14 +104,12 @@ const editProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
-    const result = Products.findByIdAndDelete(id);
-    if (!result)
-      return res.status(400).json({
-        message: "Lỗi xóa",
-      });
-    return res.status(200).json({
-      message: "Xóa thành công",
-    });
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      const result = await Products.findByIdAndDelete(id);
+      if (!result) return res.status(400).json({ message: "Lỗi xóa" });
+      return res.status(200).json({ message: "Xóa thành công" });
+    }
+    return res.status(400).json({ message: "ID không hợp lệ" });
   } catch (e) {
     return res.status(400).json({
       message: "Error: " + e,
