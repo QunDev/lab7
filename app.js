@@ -2,6 +2,7 @@ import express from "express";
 import bodyParse from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import { validationUser } from "./Validation/Validation.js";
 
@@ -13,12 +14,15 @@ dotenv.config();
 
 const app = express();
 
+app.use(cors());
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
   next();
 });
 

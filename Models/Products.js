@@ -14,13 +14,17 @@ const ProductSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    // required: true,
     trim: true,
   },
   quantity: {
     type: Number,
-    required: true,
+    // required: true,
     min: 1,
+    trim: true,
+  },
+  image: {
+    type: String,
     trim: true,
   },
   author: {

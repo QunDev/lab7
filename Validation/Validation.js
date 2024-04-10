@@ -15,21 +15,21 @@ const Product = Joi.object({
     "number.min": "Giá phải lớn hơn {#limit}",
     "any.required": "Giá là bắt buộc",
   }),
-  description: Joi.string().min(5).required().messages({
+  description: Joi.string().min(5).messages({
     "string.base": "Mô tả sản phẩm phải là chuỗi",
     "string.empty": "Mô tả sản phẩm không được để trống",
     "string.min": "Mô tả sản phẩm ít nhất {#limit} ký tự",
     "any.required": "Mô tả sản phẩm là bắt buộc",
   }),
-  quantity: Joi.number().integer().min(1).required().messages({
+  quantity: Joi.number().integer().min(1).messages({
     "number.base": "Số lượng phải là một số",
     "number.integer": "Số lượng phải là số nguyên",
     "number.min": "Số lượng phải lớn hơn {#limit}",
     "any.required": "Số lượng là bắt buộc",
   }),
+  image: Joi.string(),
   author: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
-    .required()
     .messages({
       "string.base": `Trường 'author' phải là một chuỗi.`,
       "string.empty": `Trường 'author' không được để trống.`,
@@ -38,7 +38,6 @@ const Product = Joi.object({
     }),
   category: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
-    .required()
     .messages({
       "string.base": `Trường 'category' phải là một chuỗi.`,
       "string.empty": `Trường 'category' không được để trống.`,

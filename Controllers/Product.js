@@ -34,7 +34,8 @@ const getProduct = async (req, res) => {
 
 const addProduct = async (req, res) => {
   try {
-    const { name, price, description, quantity, category, author } = req.body;
+    const { name, price, description, quantity, category, author, image } =
+      req.body;
     const product = new Products({
       name,
       price,
@@ -42,6 +43,7 @@ const addProduct = async (req, res) => {
       quantity,
       category,
       author,
+      image,
     });
     const result = await product.save();
     if (!result) return res.status(400).json({ message: "Lỗi thêm db" });
@@ -54,6 +56,7 @@ const addProduct = async (req, res) => {
         description: result.description,
         quantity: result.quantity,
         category: result.category,
+        image: result.image,
       },
     });
   } catch (e) {
@@ -69,7 +72,7 @@ const editProduct = async (req, res) => {
     const product = await Products.findById(id).populate("category");
     if (!product)
       return res.status(400).json({ message: "Sản phẩm không tồn tại" });
-    let { name, price, description, quantity, category } = req.body;
+    let { name, price, description, quantity, category, image } = req.body;
     name ? (product.name = name) : (product.name = product.name);
     price ? (product.price = price) : (product.price = product.price);
     description
@@ -81,6 +84,7 @@ const editProduct = async (req, res) => {
     category
       ? (product.category = category)
       : (product.category = product.category);
+    image ? (product.image = image) : (product.image = product.image);
     const result = await product.save();
     if (!result) return res.status(400).json({ message: "Lỗi thêm db" });
     return res.status(200).json({
@@ -92,6 +96,7 @@ const editProduct = async (req, res) => {
         description: result.description,
         quantity: result.quantity,
         category: result.category,
+        image: result.image,
       },
     });
   } catch (e) {
